@@ -8,7 +8,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SpacefinderApp.Views; 
+using SpacefinderApp.Views;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using MySqlConnector;
+using SpacefinderApp.Data.Models;
 
 
 namespace SpacefinderApp
@@ -18,22 +22,35 @@ namespace SpacefinderApp
         public MainWindow()
         {
             InitializeComponent();
-            statusText.Text = "Ready";
+            LoadBookings();
         }
-
-        private void ShowBookingWindow_Click(object sender, RoutedEventArgs e)
+        private void LoadBookings()
         {
-            try
+            List<Booking> bookings = new List<Booking>();
+
+            using (var connection = DatabaseHelper.GetConnection())
             {
-                var bookingWindow = new BookingWindow();
-                bookingWindow.Owner = this; // Set parent window
-                bookingWindow.Closed += (s, args) => statusText.Text = "Booking window closed";
-                bookingWindow.Show();
-                statusText.Text = "Booking window opened";
+                connection.Open();
+                string query = "SELECT * FROM bookings";
+
+                using (var command = new MySqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bookings.Add(new Booking
+                        {
+                            Id = reader.GetInt32("id"),
+                            UserId = reader.GetInt32("user_id"),
+                            StartTime = reader.GetDateTime("start_time"),
+                            EndTime = reader.GetDateTime("end_time"),
+                            Status = reader.GetBoolean("status")
+                        });
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error opening window: {ex.Message}");
-            }
+
+            BookingsGrid.ItemsSource = bookings;
         }
     }
+}

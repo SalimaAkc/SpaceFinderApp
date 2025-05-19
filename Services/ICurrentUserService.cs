@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpacefinderApp.Data.Repositories
+namespace SpacefinderApp.Services
 {
-    interface IUserRepository
+    internal class ICurrentUserService
     {
     }
 }

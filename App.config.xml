@@ -1,0 +1,7 @@
+﻿<configuration>
+	<connectionStrings>
+		<add name="SpacefinderDb"
+			 connectionString="server=localhost;database=spacefinder;user=root;password=;"
+			 providerName="MySql.Data.MySqlClient"/>
+	</connectionStrings>
+</configuration>
