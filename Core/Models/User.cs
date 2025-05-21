@@ -8,15 +8,14 @@ namespace SpacefinderApp.Data.Models
 {
     public class User
     {
+        public User(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public string RNumber { get; set; }
-        public string SchoolEmail { get; set; }
-        public string PasswordHash { get; set; }
-        public Boolean IsTeacher { get; set; }
-        public string ResetToken { get; set; }
-        public DateTime ResetTokenExpiry { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public bool IsDeleted { get; set; }
+        public string Name { get; set; }
+
     }
 }

@@ -6,12 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <UserSecretsId>307739a9-a7ff-4371-ae0a-30098561911b</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="C:\Users\Omar\OneDrive - Thomas More\Bureau\AppDbContext.cs" Link="AppDbContext.cs" />
-    <Compile Include="C:\Users\Omar\OneDrive - Thomas More\Bureau\LoginViewModel.cs" Link="LoginViewModel.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
@@ -23,6 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="9.0.3" />
     <PackageReference Include="MySqlConnector" Version="2.4.0" />

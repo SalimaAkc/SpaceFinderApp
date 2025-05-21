@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SpacefinderApp.Data.Models
 {
-    class Bookings
+    public class Booking
     {
-        public int BookingID { get; set; }
-        public int UserID { get; set; }
+        public int ID { get; set; }
+        public object UserId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
