@@ -1,9 +1,11 @@
-﻿<Application x:Class="SpacefinderApp.App"
+﻿<Application x:Class="YourProjectNamespace.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SpacefinderApp"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Views/LoginView.xaml">
     <Application.Resources>
-         
+        <!-- Include your converters globally -->
+        <ResourceDictionary>
+            <converters:RoleToVisibilityConverter x:Key="RoleToVisibilityConverter" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

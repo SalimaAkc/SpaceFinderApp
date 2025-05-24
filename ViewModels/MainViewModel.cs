@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpacefinderApp.Utilities.Converters
+namespace SpacefinderApp.ViewModels
 {
-    class BoolToVisibilityConverters
+    internal class MainViewModel
     {
     }
 }

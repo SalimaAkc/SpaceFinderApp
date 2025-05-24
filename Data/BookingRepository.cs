@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpacefinderApp.Utilities.Validators
+namespace SpacefinderApp.Data
 {
-    class EmailValidator
+    internal class BookingRepository
     {
     }
 }

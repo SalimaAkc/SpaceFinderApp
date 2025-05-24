@@ -11,13 +11,16 @@ using System.Windows.Shapes;
 using SpacefinderApp.Data;
 using System.Collections.Generic;
 using MySqlConnector;
-using SpacefinderApp.Data.Models;
+using SpacefinderApp.Model;
 
 
 namespace SpacefinderApp
 {
     public partial class MainWindow : Window
     {
-       
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpacefinderApp.Services
+namespace SpacefinderApp.Resources
 {
-    internal class ICurrentUserService
+    internal class Icons
     {
     }
 }
