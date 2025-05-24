@@ -5,21 +5,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
-namespace SpacefinderApp.Data
+namespace SpacefinderApp.DatabaseContext
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
+        private readonly string _connectionString;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DatabaseContext()
         {
-            modelBuilder.Entity<User>()
-                .HasDiscriminator(u => u.Type)
-                .HasValue<Student>(UserType.Student)
-                .HasValue<Teacher>(UserType.Teacher);
+            var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+            _connectionString = configuration.GetConnectionString("Default");
         }
-    }
+    }   
+
+    // Use _connectionString for database operations
 }

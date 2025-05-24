@@ -1,4 +1,0 @@
-<Button Content="Manage Rooms" 
-        Visibility="{Binding CurrentUser.Type, 
-        Converter={StaticResource RoleToVisibilityConverter}, 
-        ConverterParameter=Teacher}"/>

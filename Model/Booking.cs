@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpacefinderApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace SpacefinderApp.Model
 {
-    internal class Booking
+    public class Booking
     {
-        public int ID { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int RoomId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public int PeopleAmount { get; set; }
 
-
+        // Navigation properties
+        public User User { get; set; }
+        public required Room Room { get; set; }
     }
 }
