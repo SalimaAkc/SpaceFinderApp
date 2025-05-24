@@ -58,6 +58,11 @@ namespace SpacefinderApp.ViewModels
             // Initialize other commands similarly
         }
 
+        private void ExecuteLogin()
+        {
+            throw new NotImplementedException();
+        }
+
         private void ExecuteLogin(object? parameter)
         {
             // Your login logic
