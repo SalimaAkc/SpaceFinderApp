@@ -12,21 +12,23 @@ using System.Windows.Input;
 
 namespace SpacefinderApp.ViewModels
 {
-    public class AuthViewModel(AuthService authService) : INotifyPropertyChanged
+    public class AuthViewModel : INotifyPropertyChanged
     {
-        private readonly AuthService _authService = authService;
+        // Properties
         private string _email = string.Empty;
+        private string _password = string.Empty;
+        private bool _isPasswordVisible;
         private string _errorMessage = string.Empty;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public string Email
+        public bool IsPasswordVisible
         {
-            get => _email;
+            get => _isPasswordVisible;
             set
             {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
+                _isPasswordVisible = value;
+                OnPropertyChanged(nameof(IsPasswordVisible));
             }
         }
 
@@ -40,57 +42,38 @@ namespace SpacefinderApp.ViewModels
                 OnPropertyChanged(nameof(HasError));
             }
         }
+
         public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
 
         // Commands
-        public ICommand LoginCommand => new RelayCommand(Login);
+        public ICommand LoginCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
+        public ICommand TogglePasswordVisibilityCommand { get; }
+        public bool LoginIsValid { get; private set; }
 
-        private void Login()
+        public AuthViewModel()
         {
-            throw new NotImplementedException();
+            LoginCommand = new RelayCommand(ExecuteLogin);
+            TogglePasswordVisibilityCommand = new RelayCommand(() => IsPasswordVisible = !IsPasswordVisible);
+            // Initialize other commands similarly
         }
 
-        public ICommand ForgotPasswordCommand => new RelayCommand(SendPasswordReset);
-
-        private void Login(object parameter)
+        private void ExecuteLogin(object? parameter)
         {
-            if (parameter is not PasswordBox passwordBox)
+            // Your login logic
+            if (LoginIsValid)
             {
-                ErrorMessage = "Password field error";
-                return;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    new MainWindow().Show();
+                    Application.Current.MainWindow?.Close();
+                });
             }
-
-            var password = passwordBox.Password;
-
-            if (string.IsNullOrWhiteSpace(Email)
-                || string.IsNullOrWhiteSpace(password))
-            {
-                ErrorMessage = "Email and password are required";
-                return;
-
-
-            }
-
-            var (success, user) = _authService.Login(Email, password);
-            if (success)
-            {
-                ErrorMessage = "";
-                // Navigate to dashboard (you'll need to implement this)
-                MessageBox.Show("Login successful!");
-            }
-            else
-            {
-                ErrorMessage = "Invalid credentials";
-            }
-        }
-        private void SendPasswordReset(object? _)
-        {
-            // Implement password reset logic
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
- }
+}

@@ -12,15 +12,20 @@ using SpacefinderApp.Data;
 using System.Collections.Generic;
 using MySqlConnector;
 using SpacefinderApp.Model;
+using SpacefinderApp.Views;
 
-
-namespace SpacefinderApp
+namespace SpacefinderApp.Views
 {
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
         }
     }
 }
