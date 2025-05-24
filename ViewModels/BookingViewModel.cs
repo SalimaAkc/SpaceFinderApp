@@ -5,18 +5,16 @@ using SpacefinderApp.Utilities;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
+using System.Windows;
 using System.Windows.Input;
 
-public class BookingViewModel : INotifyPropertyChanged
+public class BookingViewModel
 {
-    private readonly BookingRepository _bookingRepo;
-    public ObservableCollection<TimeSlot> AvailableSlots { get; set; }
+    public ICommand SelectCampusCommand { get; } = new RelayCommand<string>(SelectCampus);
 
-    public ICommand BookRoomCommand => new RelayCommand(BookRoom);
-
-    private void BookRoom()
+    private static void SelectCampus(string campusName)
     {
-        var booking = new Booking { RoomId = SelectedRoom.Id, ... };
-        _bookingRepo.AddBooking(booking);
+        // Handle campus selection logic
+        MessageBox.Show($"Selected campus: {campusName}");
     }
 }
